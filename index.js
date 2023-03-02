@@ -1,9 +1,8 @@
-// if(process.env.NODE_ENV !== "production"){
-//   require('dotenv').config();
-// }
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config();
+}
 
 
-require('dotenv').config();
 
 const express = require("express");
 const path = require("path");
@@ -27,7 +26,7 @@ const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
 // const dbURL = process.env.DB_URL
 // "mongodb://localhost:27017/yelp-camp"
-const dbURL = "mongodb://localhost:27017/yelp-camp"
+const dbURL = process.env.DB_URL
 
 const MongoStore = require('connect-mongo');
 
