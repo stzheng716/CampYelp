@@ -25,9 +25,8 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users')
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
-// const dbURL = process.env.DB_URL
-// "mongodb://localhost:27017/yelp-camp"
-const dbURL = process.env.DB_URL
+
+const dbURL = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp"
 
 const MongoStore = require('connect-mongo');
 
@@ -66,10 +65,12 @@ store.on('error', function (e){
   console.log('session store error', e)
 })
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
+
 const sessionConfig = {
   store,
   name: 'yelpMap session',
-  secret: 'thisshouldbeabettersecret!',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie:{
